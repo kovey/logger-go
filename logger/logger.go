@@ -68,7 +68,7 @@ func (l *Logger) SetDir(dir string) *Logger {
 
 func (l *Logger) setLogFile(check bool) *Logger {
 	if check {
-		fileName := time.Now().Format("2006-01-02")
+		fileName := time.Now().Format("2006-01-02") + ".log"
 		if l.fileName == fileName {
 			return l
 		}
