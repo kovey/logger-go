@@ -39,7 +39,7 @@ type Monitor struct {
 	From          string      `json:"from"`
 	End           int64       `json:"end"`
 	ParentId      string      `json:"parentId"`
-	SpandId       string      `json:"spanId"`
+	SpanId        string      `json:"spanId"`
 	ClientVersion string      `json:"client_version"`
 	ServerVersion string      `json:"server_version"`
 	ClientLang    string      `json:"client_lang"`

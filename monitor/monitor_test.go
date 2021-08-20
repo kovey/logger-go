@@ -53,7 +53,7 @@ func TestWrite(t *testing.T) {
 		From:          "golang",
 		End:           23534534,
 		ParentId:      "sdfsfsfs",
-		SpandId:       "afsadad",
+		SpanId:        "afsadad",
 		ClientVersion: "1.0",
 		ServerVersion: "1.0",
 		ClientLang:    "php",
