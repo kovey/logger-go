@@ -7,8 +7,9 @@ import (
 )
 
 const (
-	logFormat  = "[%s][%s] %s\n"
+	logFormat  = "[%s][%s] %s on %s(%d) \n"
 	dateFormat = "2006-01-02 15:04:05"
+	caller     = 1
 )
 
 var level int
@@ -31,7 +32,8 @@ func Info(format string, params ...interface{}) {
 		return
 	}
 
-	fmt.Printf(logFormat, "info", time.Now().Format(dateFormat), fmt.Sprintf(format, params...))
+	_, file, line, _ := runtime.Caller(caller)
+	fmt.Printf(logFormat, "info", time.Now().Format(dateFormat), fmt.Sprintf(format, params...), file, line)
 }
 
 func Debug(format string, params ...interface{}) {
@@ -39,7 +41,8 @@ func Debug(format string, params ...interface{}) {
 		return
 	}
 
-	fmt.Printf(logFormat, "debug", time.Now().Format(dateFormat), fmt.Sprintf(format, params...))
+	_, file, line, _ := runtime.Caller(caller)
+	fmt.Printf(logFormat, "debug", time.Now().Format(dateFormat), fmt.Sprintf(format, params...), file, line)
 }
 
 func Warning(format string, params ...interface{}) {
@@ -47,7 +50,8 @@ func Warning(format string, params ...interface{}) {
 		return
 	}
 
-	fmt.Printf(logFormat, "warning", time.Now().Format(dateFormat), fmt.Sprintf(format, params...))
+	_, file, line, _ := runtime.Caller(caller)
+	fmt.Printf(logFormat, "warning", time.Now().Format(dateFormat), fmt.Sprintf(format, params...), file, line)
 }
 
 func Error(format string, params ...interface{}) {
@@ -55,7 +59,8 @@ func Error(format string, params ...interface{}) {
 		return
 	}
 
-	fmt.Printf(logFormat, "error", time.Now().Format(dateFormat), fmt.Sprintf(format, params...))
+	_, file, line, _ := runtime.Caller(caller)
+	fmt.Printf(logFormat, "error", time.Now().Format(dateFormat), fmt.Sprintf(format, params...), file, line)
 }
 
 func Panic(err interface{}) bool {
