@@ -45,6 +45,7 @@ type Monitor struct {
 	ClientLang    string      `json:"client_lang"`
 	ServerLang    string      `json:"server_lang"`
 	Header        interface{} `json:"header"`
+	Date          string      `json:"date"`
 }
 
 func Init(logDir string) {
@@ -52,11 +53,19 @@ func Init(logDir string) {
 }
 
 func Write(data Monitor) {
+	write(data, log)
+}
+
+func write(data interface{}, l *logger.Logger) {
 	content, err := json.Marshal(data)
 	if err != nil {
 		logger.Error("monitor write failure, error[%s]", err)
 		return
 	}
 
-	log.Write(string(content))
+	l.Write(string(content))
+}
+
+func (m Monitor) Write() {
+	write(m, log)
 }

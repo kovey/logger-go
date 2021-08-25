@@ -18,9 +18,13 @@ func setup() {
 
 	logDir = str + "/../logs"
 	Init(logDir)
+	setupDb()
+	setupRedis()
 }
 
 func teardown() {
+	teardownDb()
+	teardownRedis()
 	os.RemoveAll(logDir)
 }
 
@@ -63,6 +67,7 @@ func TestWrite(t *testing.T) {
 
 	Write(data)
 	Write(data)
+	data.Write()
 
 	logFile := logDir + "/" + log.GetFileName()
 	content, err := ioutil.ReadFile(logFile)
